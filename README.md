@@ -1,2 +1,4 @@
-# buyer_persona_maker
+# Buyer Persona Toolkit
 A Jupyter notebook in Python for building a Naive-Bayes classifier to parse job titles into their levels of responsibility and functional area components.
+
+
