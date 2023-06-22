@@ -1,6 +1,6 @@
 # Named Entity Recognition model for job title components
 
-A Jupyter notebook for downloading an academic dataset of job titles and training a Naive Bayes classifier model that can tag any job title with a Level of Responsibility (e.g. Manager, VP) and its Function (e.g. Finance, Marketing, IT, Sales). 
+A Jupyter notebook (title_func_level.ipynb) for downloading an academic dataset of job titles and training a Naive Bayes classifier model that can tag any job title with a Level of Responsibility (e.g. Manager, VP) and its Function (e.g. Finance, Marketing, IT, Sales). 
 
 The dataset includes 475K job titles which have been parsed into their respective Levels of Responsibility (RES) and Functions (FUN).  Other components such as Location (LOC) and Stopping Words (O) are also included for completeness.
 
