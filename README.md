@@ -498,13 +498,62 @@ print('Accuracy score: {0:.1%}'. format(accuracy_score(y_test, y_pred)))
 
 
 ```python
-# Try some examples
-new_token = "marketing"
-predicted_category = predict_category(new_token.lower())
-print(f"The predicted category for '{new_token}' is: {predicted_category}")
+def jt_tokenized(job_title_text):
+    
+    df_job_title_breakdown = pd.DataFrame()
+
+    for token in job_title_text.split(' '):
+        predicted_category = predict_category(token.lower())
+        df_job_title_breakdown = pd.concat([df_job_title_breakdown, 
+                                            pd.DataFrame({'token': token, 'pos': predicted_category}, index=[0])], 
+                                           axis=0, ignore_index=True)
+
+    return df_job_title_breakdown    
+
+job_title = widgets.Text(
+    value='type something',
+    placeholder='type something',
+    description='Enter title:',
+    disabled=False   
+)
 ```
 
-    The predicted category for 'marketing' is: FUN
+
+    Text(value='type something', description='Enter title:', placeholder='type something')
+
+
+
+```python
+jt_tokenized(job_title.value)
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>token</th>
+      <th>pos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>director</td>
+      <td>RES</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>of</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>engineering</td>
+      <td>FUN</td>
+    </tr>
+  </tbody>
+</table></div>
+
 
 
 ### Serialize classifier model into pickle format
