@@ -1,3 +1,15 @@
+# Overview
+
+This repo includes a methodology and code for creating buyer personas for Marketing and Sales teams, in a fully objective and data driven way.
+
+The two-step process leverages both machine-learning techniques and CRM data to yield clarity on who (on the customer account side) needs to be included in Sales motions to increase chances of a Sale.  For example, to accelerate the creation of new opportunities and revenue, should a B2B SaaS company that sells an accounting product reach out initially to the CFO, the CTO, a VP of IT, a compliance officer, or actually all the above?
+
+This is illustrated in the process flow below where five individuals (Leads) with unique job titles engage with initial Marketing outreach.  Ultimately, the Sales team is able to connect meaningfully with person #2 and #5 as shown.  These individuals and their job titles would typically appear under the CRM's (e.g. Salesforce) Contact records.  
+
+![Identifying Buyer Persona](buyer_persona_process.png)
+
+The Jupyter notebook (title_func_level.ipynb) shown below trains a classifier model which can identify the Level of Responsibility (RES) and Function (FUN) for any job title.  By applying this process to all Contacts affiliated with Qualified customer opportunities or Won business, a CRO, CMO, or GTM Data Scientist can home in on who at a target account should be included in Sales conversations to optimize for revenue.
+
 # Named Entity Recognition model for job title components
 
 A Jupyter notebook (title_func_level.ipynb) for downloading an academic dataset of job titles and training a Naive Bayes classifier model that can tag any job title with a Level of Responsibility (e.g. Manager, VP) and its Function (e.g. Finance, Marketing, IT, Sales). 
