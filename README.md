@@ -6,7 +6,6 @@ The two-step process leverages both machine-learning techniques and CRM data to 
 
 This is illustrated in the process flow below where five individuals (Leads) with unique job titles engage with initial Marketing outreach.  Ultimately, the Sales team is able to connect meaningfully with person #2 and #5 as shown.  These individuals and their job titles would typically appear under the CRM's (e.g. Salesforce) Contact records.  
 
-![Identifying Buyer Persona](buyer_persona_process.png)
 
 The Jupyter notebook (title_func_level.ipynb) shown below trains a classifier model which can identify the Level of Responsibility (RES) and Function (FUN) for any job title.  By applying this process to all Contacts affiliated with Qualified customer opportunities or Won business, a CRO, CMO, or GTM Data Scientist can home in on who at a target account should be included in Sales conversations to optimize for revenue.
 
