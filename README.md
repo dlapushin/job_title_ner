@@ -72,8 +72,6 @@ df_corpus.head()
       inflating: __MACOSX/._NER_corpus_Collated_Positions_All_18June2020.csv  
     (475073, 8)
 
-![Bar Chart](output_10_1.png)
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -146,7 +144,6 @@ df_corpus.head()
     </tr>
   </tbody>
 </table></div>
-
 
 
 ## 2. Data transformations and enrichments
@@ -313,10 +310,11 @@ create_pos_barchart(df_flat_final)
 top_n_pos_token(df_flat_final, 10)
 ```
 
+![Bar Chart](output_10_1.png)
 
+**Top 10 Tokens by Part of Speech (POS)**
 
-
-<div><div id=8576abd8-2378-4bd9-8706-a93e5d640bab style="display:none; background-color:#9D6CFF; color:white; width:200px; height:30px; padding-left:5px; border-radius:4px; flex-direction:row; justify-content:space-around; align-items:center;" onmouseover="this.style.backgroundColor='#BA9BF8'" onmouseout="this.style.backgroundColor='#9D6CFF'" onclick="window.commands?.execute('create-mitosheet-from-dataframe-output');">See Full Dataframe in Mito</div> <script> if (window.commands?.hasCommand('create-mitosheet-from-dataframe-output')) document.getElementById('8576abd8-2378-4bd9-8706-a93e5d640bab').style.display = 'flex' </script> <table border="1" class="dataframe">
+<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -443,13 +441,6 @@ top_n_pos_token(df_flat_final, 10)
     </tr>
   </tbody>
 </table></div>
-
-
-
-
-    
-![png](output_10_1.png)
-    
 
 
 ## 5. Train Machine Learning classifier model
