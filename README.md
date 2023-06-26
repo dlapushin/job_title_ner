@@ -12,7 +12,7 @@ The Jupyter notebook (title_func_level.ipynb) shown below trains a classifier mo
 
 # Named Entity Recognition model for job title components
 
-A Jupyter notebook (title_func_level.ipynb) for downloading an academic dataset of job titles and training a Naive Bayes classifier model that can tag any job title with a Level of Responsibility (e.g. Manager, VP) and its Function (e.g. Finance, Marketing, IT, Sales). 
+A Jupyter notebook for downloading an academic dataset of job titles and training a Naive Bayes classifier model that can tag any job title with a Level of Responsibility (e.g. Manager, VP) and its Function (e.g. Finance, Marketing, IT, Sales). 
 
 The dataset includes 475K job titles which have been parsed into their respective Levels of Responsibility (RES) and Functions (FUN).  Other components such as Location (LOC) and Stopping Words (O) are also included for completeness.
 
@@ -36,13 +36,14 @@ import subprocess
 import pickle
 import gc
 import sys
+import ipywidgets as widgets
+from IPython.display import display,clear_output
 
 import nltk
 nltk.download('stopwords', quiet=True)
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Perceptron
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
@@ -71,6 +72,7 @@ df_corpus.head()
       inflating: NER_corpus_Collated_Positions_All_18June2020.csv  
       inflating: __MACOSX/._NER_corpus_Collated_Positions_All_18June2020.csv  
     (475073, 8)
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -144,6 +146,7 @@ df_corpus.head()
     </tr>
   </tbody>
 </table></div>
+
 
 
 ## 2. Data transformations and enrichments
@@ -310,9 +313,6 @@ create_pos_barchart(df_flat_final)
 top_n_pos_token(df_flat_final, 10)
 ```
 
-![Bar Chart](output_10_1.png)
-
-**Top 10 Tokens by Part of Speech (POS)**
 
 <table border="1" class="dataframe">
   <thead>
@@ -443,6 +443,13 @@ top_n_pos_token(df_flat_final, 10)
 </table></div>
 
 
+
+
+    
+![png](output_10_1.png)
+    
+
+
 ## 5. Train Machine Learning classifier model
 * Create a 66% / 33% split for training and testing, using the **df_flat_final** dataset
 * Train MultinomalNB classifier with X_train, y_train - **takes less than 1 min**
@@ -489,63 +496,49 @@ print('Accuracy score: {0:.1%}'. format(accuracy_score(y_test, y_pred)))
 
 
 ```python
+from IPython.display import display
+
 def jt_tokenized(job_title_text):
-    
+
     df_job_title_breakdown = pd.DataFrame()
 
     for token in job_title_text.split(' '):
         predicted_category = predict_category(token.lower())
-        df_job_title_breakdown = pd.concat([df_job_title_breakdown, 
-                                            pd.DataFrame({'token': token, 'pos': predicted_category}, index=[0])], 
+        df_job_title_breakdown = pd.concat([df_job_title_breakdown,
+                                            pd.DataFrame({'token': token, 'pos': predicted_category}, index=[0])],
                                            axis=0, ignore_index=True)
 
-    return df_job_title_breakdown    
+    return df_job_title_breakdown
+
+button = widgets.Button(description="Click Me!")
+output = widgets.Output()
 
 job_title = widgets.Text(
-    value='type something',
-    placeholder='type something',
+    value='type job title',
+    placeholder='type job title',
     description='Enter title:',
-    disabled=False   
+    disabled=False
 )
+
+def on_button_clicked(b):
+    with output:
+        clear_output()
+        #print("Button clicked.")
+        html = widgets.HTML(#value="Hello <b>World</b>",
+                            value = jt_tokenized(job_title.value).to_html(),
+                            placeholder=str(job_title.value),
+                            #description=jt_tokenized(job_title.value).to_html()
+                            )
+        display(html)
+
+button.on_click(on_button_clicked)
+
+top = widgets.HBox([job_title, button])
+widgets.VBox([top, output])
 ```
 
 
-    Text(value='type something', description='Enter title:', placeholder='type something')
-
-
-
-```python
-jt_tokenized(job_title.value)
-```
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>token</th>
-      <th>pos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>director</td>
-      <td>RES</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>of</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>engineering</td>
-      <td>FUN</td>
-    </tr>
-  </tbody>
-</table></div>
-
-
+![Interactive use example](widget_clip.png)
 
 ### Serialize classifier model into pickle format
 
@@ -555,3 +548,4 @@ file = open('title_classifier','wb')
 pickle.dump(classifier,file)
 file.close()
 ```
+
