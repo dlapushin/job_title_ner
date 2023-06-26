@@ -8,7 +8,11 @@ This is illustrated in the process flow below where five individuals (Leads) wit
 
 ![Identifying Buyer Persona](buyer_persona_process.png)
 
-The Jupyter notebook (title_func_level.ipynb) shown below trains a classifier model which can identify the Level of Responsibility (RES) and Function (FUN) for any job title.  By applying this process to all Contacts affiliated with Qualified customer opportunities or Won business, a CRO, CMO, or GTM Data Scientist can home in on who at a target account should be included in Sales conversations to optimize for revenue.
+The Jupyter notebook (title_func_level.ipynb) detailed below trains a classifier model which can identify the Level of Responsibility (RES) and Function (FUN) for any job title.  By applying this process to all Contacts affiliated with Qualified customer opportunities or Won business, a CRO, CMO, or GTM Data Scientist can home in on who at a target account should be included in Sales conversations to optimize for revenue.  You can also run this code immediately by following the Colab link and running all cells.
+
+<a target="_blank" href="https://colab.research.google.com/github/dlapushin/buyer_persona_maker/blob/main/title_func_level.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 # Named Entity Recognition model for job title components
 
