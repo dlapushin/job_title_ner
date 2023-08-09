@@ -192,7 +192,7 @@ class Buyer_Persona:
 
 # Example usage:
 buyer_persona = Buyer_Persona()
-buyer_persona.data_ingest('df_master_bmc.csv', 'Title')
+buyer_persona.data_ingest('my_crm_contacts.csv', 'Title')
 buyer_persona.title_clean('Title')
 buyer_persona.master_token_to_odict()
 
