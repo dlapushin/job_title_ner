@@ -766,9 +766,9 @@ class Buyer_Persona:
 ## Example usage pattern:
 * Load contact records with a job title field included.  The job title field needs to be specified with the *data_ingest* method
 
-# Example usage:
 
 ```python
+# Example usage:
 buyer_persona = Buyer_Persona()  ## Instantiate the Buyer_Persona class
 buyer_persona.data_ingest('/content/my_crm_contacts.csv', 'Title')  ## Ingests contacts file; specify field containing job title (e.g. Title)
 buyer_persona.title_clean('Title')  ## Strips punctutation and other extraneous text form job titles
